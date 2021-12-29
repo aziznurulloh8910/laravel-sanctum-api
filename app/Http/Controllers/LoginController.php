@@ -9,7 +9,7 @@ class LoginController extends Controller
 { 
     public function create()
     {
-        return view('login');
+        return view('login'); //menuju ke view login
     }
 
     public function store(Request $request)
