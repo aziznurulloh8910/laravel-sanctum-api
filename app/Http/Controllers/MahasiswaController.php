@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
@@ -24,12 +25,7 @@ class MahasiswaController extends Controller
      */
     public function create(Request $request)
     {
-        $mahasiswa = new Mahasiswa;
-        $mahasiswa->nama = $request->nama;
-        $mahasiswa->alamat = $request->alamat;
-        $mahasiswa->save();
-
-        return "Data Berhasil Masuk";
+        
     }
 
     /**
@@ -40,7 +36,16 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $mahasiswa = new Mahasiswa;
+        $mahasiswa->nama = $request->nama;
+        $mahasiswa->alamat = $request->alamat;
+        $mahasiswa->save();
+
+        // return "Data Berhasil Masuk";
+        return response()->json([
+            'msg' => "Data Berhasil Masuk",
+            'data' => $mahasiswa
+        ]);
     }
 
     /**
@@ -82,7 +87,10 @@ class MahasiswaController extends Controller
         $mahasiswa->alamat = $alamat;
         $mahasiswa->save();
 
-        return "Data Sudah Diupdate";
+        return response()->json([
+            'msg' => 'Data Berhasil Diupdate',
+            'data' => $mahasiswa
+        ]);
     }
 
     /**
@@ -96,6 +104,10 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($id);
         $mahasiswa->delete();
 
-        return "Data Sudah Dihapus";
+        return response()->json([
+            "Data Sudah Dihapus",
+            'data' => $mahasiswa
+        ]);
     }
 }
+

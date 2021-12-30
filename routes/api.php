@@ -24,6 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('mahasiswa', [MahasiswaController::class, 'index']);
 Route::get('mahasiswa/{id}', [MahasiswaController::class, 'show']);
-Route::post('mahasiswa', [MahasiswaController::class, 'create']);
+Route::post('mahasiswa', [MahasiswaController::class, 'store']);
 Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
 Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
+
+Route::resource('programs', App\Http\Controllers\API\ProgramController::class);
+
